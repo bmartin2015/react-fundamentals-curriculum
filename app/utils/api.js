@@ -9,7 +9,17 @@ module.exports = {
     );
 
     return axios.get(encodedURI).then(response => {
-      return response;
+      return response.data;
+    });
+  },
+
+  fetchFiveDayForcast: city => {
+    const encodedURI = window.encodeURI(
+      `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&type=accurate&APPID=${appid}&cnt=5`
+    );
+
+    return axios.get(encodedURI).then(response => {
+      return response.data;
     });
   }
 };
