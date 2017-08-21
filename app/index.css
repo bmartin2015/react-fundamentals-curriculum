@@ -80,3 +80,12 @@ body {
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(252, 90, 44, 0.89);
+  color: #fff;
+  padding: 5px;
+}
