@@ -11,25 +11,25 @@ class Forcast extends Component {
 
     this.state = {
       cityName: '',
-      currentWeather: null,
+      cityCountry: '',
       fiveDayForcast: null,
       loading: true
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     const city = queryString.parse(this.props.location.search);
 
-    console.log(city);
-  }
-
-  handleClick(event) {
-    event.preventDefault();
-    console.log(this.state.cityName);
-    api.fetchCurrentWeather(this.state.cityName).then(response => {
+    api.fetchFiveDayForcast(city['city']).then(response => {
       console.log(response);
+      this.setState(() => {
+        return {
+          cityName: response['city']['name'],
+          cityCountry: response['city']['country'],
+          fiveDayForcast: response['list'],
+          loading: false
+        };
+      });
     });
   }
 
@@ -40,7 +40,18 @@ class Forcast extends Component {
       return <Loading />;
     }
 
-    return <p>Forcast Page</p>;
+    return (
+      <div>
+        <div className="row">
+          <h1 className="forcast-header">
+            {this.state.cityName}, {this.state.cityCountry}
+          </h1>
+        </div>
+        <div className="row">
+          <p>Test</p>
+        </div>
+      </div>
+    );
   }
 }
 
