@@ -10,6 +10,7 @@
   "author": "Benjamin Martin <benjamin.martin2010@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },

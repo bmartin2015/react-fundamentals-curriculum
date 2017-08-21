@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import api from '../utils/api';
 
 class CityControl extends Component {
   constructor(props) {
@@ -26,6 +27,9 @@ class CityControl extends Component {
   handleClick(event) {
     event.preventDefault();
     console.log(this.state.cityName);
+    api.fetchCurrentWeather(this.state.cityName).then(response => {
+      console.log(response);
+    });
   }
 
   render() {
