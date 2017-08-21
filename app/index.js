@@ -1,10 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-require('./index.css');
+import App from './components/App';
 
-const App = () => {
-  return <div>Hello World</div>;
-};
+require('./index.css');
 
 render(<App />, document.getElementById('app'));
