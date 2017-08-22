@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import api from '../utils/api';
+import convert from '../utils/convert';
 import Loading from './Loading';
 
 const queryString = require('query-string');
@@ -48,7 +49,13 @@ class Forcast extends Component {
           </h1>
         </div>
         <div className="row">
-          <p>Test</p>
+          {this.state.fiveDayForcast.map(day => {
+            return (
+              <p key={day.dt}>
+                {convert.convertDateTime(day.dt)}
+              </p>
+            );
+          })}
         </div>
       </div>
     );
