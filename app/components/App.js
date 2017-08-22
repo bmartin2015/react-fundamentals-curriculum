@@ -5,6 +5,7 @@ import CityControl from './CityControl';
 import Forcast from './Forcast';
 import Home from './Home';
 import Nav from './Nav';
+import Details from './Details';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/forcast" component={Forcast} />
+            <Route path="/details/:id" component={Details} />
             <Route
               render={() => {
                 return <p>Page Not Found</p>;

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
+import DayContainer from './DayContainer';
+import Loading from './Loading';
+
 import api from '../utils/api';
 import convert from '../utils/convert';
-import Loading from './Loading';
 
 const queryString = require('query-string');
 
@@ -16,6 +18,8 @@ class Forcast extends Component {
       fiveDayForcast: null,
       loading: true
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +38,14 @@ class Forcast extends Component {
     });
   }
 
+  handleClick(day) {
+    console.log(day);
+    this.props.history.push({
+      pathname: `/details/${this.state.cityName}`,
+      state: day
+    });
+  }
+
   render() {
     const loading = this.state.loading;
 
@@ -43,7 +55,7 @@ class Forcast extends Component {
 
     return (
       <div>
-        <div className="row">
+        <div style={{ textAlign: 'center' }}>
           <h1 className="forcast-header">
             {this.state.cityName}, {this.state.cityCountry}
           </h1>
@@ -51,9 +63,12 @@ class Forcast extends Component {
         <div className="row">
           {this.state.fiveDayForcast.map(day => {
             return (
-              <p key={day.dt}>
-                {convert.convertDateTime(day.dt)}
-              </p>
+              <DayContainer
+                key={day.dt}
+                onClick={this.handleClick.bind(this, day)}
+                dt={day.dt}
+                icon={day.weather[0].icon}
+              />
             );
           })}
         </div>
